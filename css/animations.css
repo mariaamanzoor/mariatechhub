@@ -1,0 +1,180 @@
+/* ============================================
+   MARIA TECH HUB — ANIMATIONS
+   ============================================ */
+
+/* ---- Fade In Up (staggered) ---- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Gradient Text Shimmer ---- */
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-title .accent-line {
+  background-size: 200% 200%;
+  animation: shimmer 4s ease infinite;
+}
+
+/* ---- Orbit rings spin ---- */
+.ring-1::before,
+.ring-2::before {
+  content: '';
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  top: -5px; left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+/* ---- Skeleton loading shimmer ---- */
+@keyframes skeletonWave {
+  0%   { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+/* ---- Button ripple ---- */
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s, opacity 0.5s;
+  opacity: 0;
+}
+.btn:active::after {
+  width: 200px; height: 200px; opacity: 0;
+}
+
+/* ---- Service card border glow on hover ---- */
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.service-card:hover::after { opacity: 0.3; }
+
+/* ---- Portfolio card overlay ---- */
+.portfolio-card::after {
+  content: 'View Project →';
+  position: absolute;
+  inset: 0;
+  background: rgba(79,142,247,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: white;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.35s;
+  border-radius: var(--radius-lg);
+  letter-spacing: 1px;
+}
+.portfolio-card { position: relative; }
+.portfolio-card:hover::after { opacity: 1; }
+
+/* ---- Twinkling stars / particles (decorative) ---- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50%       { opacity: 0.6;  transform: scale(1.2); }
+}
+
+/* ---- Number counter bounce ---- */
+@keyframes countBounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ---- Hamburger to X morph is done via class in CSS/JS ---- */
+/* ---- Navbar link active underline slide ---- */
+.nav-links a.active { color: var(--white); }
+.nav-links a.active::after { transform: scaleX(1); }
+
+/* ---- Tooltip micro animation ---- */
+@keyframes tooltipFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Section separator decorative line ---- */
+.section-sep {
+  width: 60px; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 4px;
+  margin: 20px auto 0;
+}
+
+/* ---- Input focus ring animation ---- */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  animation: ringPulse 0.4s ease-out;
+}
+
+@keyframes ringPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(79,142,247,0.3); }
+  100% { box-shadow: 0 0 0 6px rgba(79,142,247,0); }
+}
+
+/* ---- Social icon hover bounce ---- */
+.social-links a:hover {
+  animation: socialBounce 0.4s ease;
+}
+@keyframes socialBounce {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-6px); }
+  70%  { transform: translateY(-3px); }
+  100% { transform: translateY(-3px); }
+}
+
+/* ---- Back to top pulsing ring ---- */
+.back-top.show::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(79,142,247,0.4);
+  animation: topRingPulse 2s ease-in-out infinite;
+}
+@keyframes topRingPulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50%      { transform: scale(1.2); opacity: 0; }
+}
+
+/* ---- Stagger delay helpers ---- */
+.reveal[data-delay="0"]   { transition-delay: 0ms; }
+.reveal[data-delay="100"] { transition-delay: 100ms; }
+.reveal[data-delay="200"] { transition-delay: 200ms; }
+.reveal[data-delay="300"] { transition-delay: 300ms; }
